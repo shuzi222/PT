@@ -15,7 +15,7 @@ header {
 }
 
 header .logo {
-  max-width: 150px;
+  max-width: 250px;
   margin-bottom: 1rem;
 }
 
@@ -26,7 +26,7 @@ header .ammx {
 
 header .cuda {
   max-width: 300px;
-  margin-bottom: 1rem;
+  margin-bottom: 5rem;
 }
 
 header h1 {
