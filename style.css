@@ -14,7 +14,7 @@ header {
 }
 
 header .logo {
-  max-width: 50px;
+  max-width: 80px;
   margin-bottom: 1rem;
 }
 
@@ -71,7 +71,7 @@ footer a {
   }
 
   header .logo {
-    max-width: 30px;
+    max-width: 40px;
     /* 移动端缩小 Logo */
   }
 }
