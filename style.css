@@ -25,7 +25,7 @@ header .ammx {
 }
 
 header .cuda {
-  max-width: 400px;
+  max-width: 300px;
   margin-bottom: 1rem;
 }
 
@@ -153,9 +153,5 @@ footer a {
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
   animation: rainbow 5s infinite linear;
   /* 炫彩效果 */
-  }
-
-  header .cuda {
-  max-width: 250px;
   }
 }
