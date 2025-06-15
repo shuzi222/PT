@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pteridophyta Token (PT)</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad: true});</script>
+</head>
+<body>
+  <header>
+    <h1>Pteridophyta Token (PT)</h1>
+    <p>An ERC20 token on Binance Smart Chain with automated unlocking and user incentives.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Project Overview</h2>
+      <p>Pteridophyta Token (PT) is an ERC20 token on Binance Smart Chain (BSC) featuring:</p>
+      <ul>
+        <li><strong>Automated Unlocking</strong>: Smart contract-based, no centralized services.</li>
+        <li><strong>User Incentives</strong>: 0.15% of unlocked tokens rewarded to transfer initiators.</li>
+        <li><strong>Low Maintenance</strong>: Developers incur no Gas fees for unlocking.</li>
+        <li><strong>Security</strong>: Built with OpenZeppelin 4.9.0, immutable developer address.</li>
+      </ul>
+      <p><strong>Note</strong>: Continuous minting may lead to inflation risks.</p>
+    </section>
+
+    <section>
+      <h2>Core Mechanics</h2>
+      <table>
+        <tr><th>Mechanism</th><th>Value</th><th>Description</th></tr>
+        <tr><td>Unlock Trigger</td><td>Non-mint/burn Transfer</td><td>Triggered by <code>transfer</code> or <code>transferFrom</code></td></tr>
+        <tr><td>Unlock Interval</td><td>3600 Blocks</td><td>≈3 hours (BSC 3s/block)</td></tr>
+        <tr><td>Unlock Amount</td><td>100 PT</td><td>Base unlock unit</td></tr>
+        <tr><td>User Reward</td><td>0.15%</td><td>Reward to transfer initiator</td></tr>
+        <tr><td>Developer Share</td><td>99.85%</td><td>Allocated to developer address</td></tr>
+        <tr><td>Initial Supply</td><td>5000 PT</td><td>Minted to developer at deployment</td></tr>
+        <tr><td>Event</td><td>TokensUnlocked</td><td>Logs trigger, block, amount, reward</td></tr>
+      </table>
+      <p><strong>Contract</strong>: View the <a href="contracts/AutoUnlockToken.sol">smart contract</a>.</p>
+    </section>
+
+    <section>
+      <h2>User Interaction Flow</h2>
+      <div class="mermaid">
+        graph TD
+          A[User Initiates Transfer] --> B{Check Unlock Condition}
+          B -->|Meets Interval| C[Calculate Missed Cycles]
+          C --> D[Calculate Total Unlock]
+          D --> E[User Reward = Unlock × 0.15%]
+          E --> F[Mint Reward to Trigger]
+          F --> G[Mint Rest to Developer]
+          G --> H[Update State]
+          H --> J[Emit TokensUnlocked]
+          J --> I[Complete Transfer]
+          B -->|Below Interval| I
+      </div>
+      <p><strong>Note</strong>: Zero-value transfers can trigger unlocks.</p>
+    </section>
+
+    <section>
+      <h2>Economic Model</h2>
+      <h3>User Benefits</h3>
+      <ul>
+        <li><strong>Reward</strong>: 0.15 PT per unlock (100 PT × 0.15%).</li>
+        <li><strong>Gas Cost</strong>: Higher for unlock transfers due to minting.</li>
+        <li><strong>Breakeven</strong>: PT price > $0.40 (assuming ~$0.06 Gas cost).</li>
+      </ul>
+      <h3>Developer Benefits</h3>
+      <ul>
+        <li><strong>Passive Income</strong>: 99.85 PT per unlock, no Gas cost.</li>
+        <li><strong>Risk</strong>: No supply cap, potential value dilution.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Security</h2>
+      <p>Built with OpenZeppelin 4.9.0, immutable developer address, non-zero address validation.</p>
+    </section>
+
+    <section>
+      <h2>Network Dependency</h2>
+      <p>Assumes BSC 3s/block (3600 blocks ≈ 3 hours). On Ethereum (12s/block), unlocks take ~12 hours.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="https://github.com/your-username/pteridophyta-token">GitHub</a> | Copyright © 2025 Pteridophyta Token</p>
+  </footer>
+</body>
+</html>
