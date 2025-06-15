@@ -11,10 +11,21 @@ header {
   color: white;
   text-align: center;
   padding: 2rem;
+  position: relative;
 }
 
 header .logo {
   max-width: 150px;
+  margin-bottom: 1rem;
+}
+
+header .ammx {
+  max-width: 200px;
+  margin-bottom: 1rem;
+}
+
+header .cuda {
+  max-width: 400px;
   margin-bottom: 1rem;
 }
 
@@ -59,6 +70,65 @@ footer {
 footer a {
   color: #25c2a0;
   text-decoration: none;
+}
+
+@keyframes rainbow {
+  0% {
+    color: #ff0000;
+  }
+
+  /* 红色 */
+  20% {
+    color: #ff9900;
+  }
+
+  /* 橙色 */
+  40% {
+    color: #33cc33;
+  }
+
+  /* 绿色 */
+  60% {
+    color: #3399ff;
+  }
+
+  /* 蓝色 */
+  80% {
+    color: #cc33cc;
+  }
+
+  /* 紫色 */
+  100% {
+    color: #ff0000;
+  }
+
+  /* 回到红色 */
+}
+
+.rainbow-text {
+  animation: rainbow 5s infinite linear;
+  /* 5秒循环，平滑过渡 */
+}
+
+.site-name {
+  position: absolute;
+  top: 1rem;
+  left: 5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  animation: rainbow 5s infinite linear;
+  /* 炫彩效果 */
+}
+
+.text-red {
+  color: #ff0000;
+  /* 红色 */
+}
+
+.text-blue {
+  color: #0000ff;
+  /* 蓝色 */
 }
 
 @media (max-width: 600px) {
