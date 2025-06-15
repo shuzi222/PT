@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,83 +11,77 @@
 <body>
   <header>
     <h1>Pteridophyta Token (PT)</h1>
-    <p>An ERC20 token on Binance Smart Chain with automated unlocking and user incentives.</p>
+    <p>基于币安智能链（BSC）的创新型 ERC20 代币，具备自动解锁和用户激励机制。</p>
   </header>
 
   <main>
     <section>
-      <h2>Project Overview</h2>
-      <p>Pteridophyta Token (PT) is an ERC20 token on Binance Smart Chain (BSC) featuring:</p>
+      <h2>项目概述</h2>
+      <p>Pteridophyta Token (PT) 是一个运行在币安智能链（BSC）上的 ERC20 代币，具有以下特点：</p>
       <ul>
-        <li><strong>Automated Unlocking</strong>: Smart contract-based, no centralized services.</li>
-        <li><strong>User Incentives</strong>: 0.15% of unlocked tokens rewarded to transfer initiators.</li>
-        <li><strong>Low Maintenance</strong>: Developers incur no Gas fees for unlocking.</li>
-        <li><strong>Security</strong>: Built with OpenZeppelin 4.9.0, immutable developer address.</li>
+        <li><strong>自动解锁</strong>：基于智能合约，无需中心化服务或人工干预。</li>
+        <li><strong>用户激励</strong>：转账触发者获得解锁代币的 0.15% 作为奖励。</li>
+        <li><strong>低维护成本</strong>：开发者无需为解锁支付额外 Gas 费用。</li>
+        <li><strong>安全性</strong>：基于 OpenZeppelin 4.9.0，开发者地址不可更改。</li>
       </ul>
-      <p><strong>Note</strong>: Continuous minting may lead to inflation risks.</p>
+      <p><strong>注意</strong>：代币采用动态供应模型，持续增发可能导致通胀风险。</p>
     </section>
 
     <section>
-      <h2>Core Mechanics</h2>
+      <h2>核心机制</h2>
       <table>
-        <tr><th>Mechanism</th><th>Value</th><th>Description</th></tr>
-        <tr><td>Unlock Trigger</td><td>Non-mint/burn Transfer</td><td>Triggered by <code>transfer</code> or <code>transferFrom</code></td></tr>
-        <tr><td>Unlock Interval</td><td>3600 Blocks</td><td>≈3 hours (BSC 3s/block)</td></tr>
-        <tr><td>Unlock Amount</td><td>100 PT</td><td>Base unlock unit</td></tr>
-        <tr><td>User Reward</td><td>0.15%</td><td>Reward to transfer initiator</td></tr>
-        <tr><td>Developer Share</td><td>99.85%</td><td>Allocated to developer address</td></tr>
-        <tr><td>Initial Supply</td><td>5000 PT</td><td>Minted to developer at deployment</td></tr>
-        <tr><td>Event</td><td>TokensUnlocked</td><td>Logs trigger, block, amount, reward</td></tr>
+        <tr><th>机制</th><th>值</th><th>说明</th></tr>
+        <tr><td>解锁触发条件</td><td>非铸造/非销毁转账</td><td>通过 <code>transfer</code> 或 <code>transferFrom</code> 触发</td></tr>
+        <tr><td>解锁间隔</td><td>3600 区块</td><td>约 3 小时（基于 BSC 3 秒/区块）</td></tr>
+        <tr><td>解锁量</td><td>100 PT</td><td>基础解锁单位</td></tr>
+        <tr><td>用户奖励</td><td>0.15%</td><td>转账触发者获得解锁量的 0.15%</td></tr>
+        <tr><td>开发者分配</td><td>99.85%</td><td>剩余代币分配给开发者地址</td></tr>
+        <tr><td>初始供应量</td><td>5000 PT</td><td>部署时铸造给开发者地址</td></tr>
+        <tr><td>事件记录</td><td>TokensUnlocked</td><td>记录触发者、区块号、解锁量和奖励</td></tr>
       </table>
-      <p><strong>Contract</strong>: View the <a href="contracts/AutoUnlockToken.sol">smart contract</a>.</p>
+      <p><strong>合约代码</strong>：查看 <a href="contracts/AutoUnlockToken.sol">智能合约</a>。</p>
     </section>
 
     <section>
-      <h2>User Interaction Flow</h2>
+      <h2>用户交互流程</h2>
       <div class="mermaid">
         graph TD
-          A[User Initiates Transfer] --> B{Check Unlock Condition}
-          B -->|Meets Interval| C[Calculate Missed Cycles]
-          C --> D[Calculate Total Unlock]
-          D --> E[User Reward = Unlock × 0.15%]
-          E --> F[Mint Reward to Trigger]
-          F --> G[Mint Rest to Developer]
-          G --> H[Update State]
-          H --> J[Emit TokensUnlocked]
-          J --> I[Complete Transfer]
-          B -->|Below Interval| I
+          A[用户发起转账] --> B{检查解锁条件}
+          B -->|满足解锁间隔| C[计算错过的周期数]
+          C --> D[计算总解锁量]
+          D --> E[用户奖励 = 解锁量 × 0.15%]
+          E --> F[铸造奖励给触发者]
+          F --> G[铸造剩余代币给开发者]
+          G --> H[更新解锁状态]
+          H --> J[触发 TokensUnlocked 事件]
+          J --> I[完成原始转账]
+          B -->|未满足间隔| I
       </div>
-      <p><strong>Note</strong>: Zero-value transfers can trigger unlocks.</p>
+      <p><strong>注意</strong>：用户可通过零值转账触发解锁。</p>
     </section>
 
     <section>
-      <h2>Economic Model</h2>
-      <h3>User Benefits</h3>
+      <h2>经济模型分析</h2>
+      <h3>用户收益</h3>
       <ul>
-        <li><strong>Reward</strong>: 0.15 PT per unlock (100 PT × 0.15%).</li>
-        <li><strong>Gas Cost</strong>: Higher for unlock transfers due to minting.</li>
-        <li><strong>Breakeven</strong>: PT price > $0.40 (assuming ~$0.06 Gas cost).</li>
-      </ul>
-      <h3>Developer Benefits</h3>
-      <ul>
-        <li><strong>Passive Income</strong>: 99.85 PT per unlock, no Gas cost.</li>
-        <li><strong>Risk</strong>: No supply cap, potential value dilution.</li>
+        <li><strong>奖励</strong>：每次解锁 0.15 PT（100 PT × 0.15%）。</li>
+        <li><strong>Gas 成本</strong>：触发解锁的转账 Gas 费用较高（因包含两次铸造，不过绝对是有赚的）。</li>
       </ul>
     </section>
 
     <section>
-      <h2>Security</h2>
-      <p>Built with OpenZeppelin 4.9.0, immutable developer address, non-zero address validation.</p>
+      <h2>安全性</h2>
+      <p>基于 OpenZeppelin 4.9.0 标准库，开发者地址不可更改，构造函数验证非零地址。</p>
     </section>
 
     <section>
-      <h2>Network Dependency</h2>
-      <p>Assumes BSC 3s/block (3600 blocks ≈ 3 hours). On Ethereum (12s/block), unlocks take ~12 hours.</p>
+      <h2>网络依赖</h2>
+      <p>基于 BSC 3 秒/区块（3600 区块 ≈ 3 小时）。若部署到以太坊（12 秒/区块），解锁时间约为 12 小时。</p>
     </section>
   </main>
 
   <footer>
-    <p><a href="https://github.com/your-username/pteridophyta-token">GitHub</a> | Copyright © 2025 Pteridophyta Token</p>
+    <p><a href="https://github.com/your-username/pteridophyta-token">GitHub</a> | 版权 © 2025 Pteridophyta Token</p>
   </footer>
 </body>
 </html>
