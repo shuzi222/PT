@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="static/img/baiden.jpg" type="image/x-icon">
   <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js"></script>
   <script>mermaid.initialize({ startOnLoad: true });</script>
 </head>
 
@@ -16,10 +17,11 @@
     <img src="static/img/baiden.jpg" alt="Pteridophyta Token 标志" class="logo">
     <h1>Pteridophyta Token (PT)</h1>
     <h1 class="site-name">树酱也干了</h1>
-    <p>基于币安智能链（BSC）的创新型 ERC20 代币，具备自动解锁和用户激励机制</p>
+    <p>基于币安智能链（BSC）的创新型 ERC20 代币，具备自动解锁和真正的用交易挖矿机制</p>
   </header>
 
   <main>
+
     <section>
       <h2>项目概述</h2>
       <p>Pteridophyta Token (PT) 是一个运行在币安智能链（BSC）上的 ERC20 代币，对我有以下利好：</p>
@@ -32,6 +34,16 @@
       <p><strong>代币经济结构</strong>：代币采用动态供应模型</p>
       <p><strong>（人话</strong>：没有通胀限制，持续增发回头晚点夏姬八通胀</p>
       <img src="static/img/ammx.gif" alt="hhh" class="ammx">
+    </section>
+
+    <section id="wallet-interaction">
+      <h2>有两种挖矿方式</h2>
+      <p class="text-blue">方案一：大于 10 PT的交易转账等链上活动有概率触发</p>
+      <h2>方案二、使用BNB挖矿触发奖励</h2>
+      <button id="connect-wallet" class="btn">连接钱包</button>
+      <button id="pay-unlock" class="btn" disabled>支付 0.0001 BNB 挖矿</button>
+      <p id="status" class="status">状态：未连接钱包</p>
+      <p id="blocks-left" class="status"></p>
     </section>
 
     <section>
