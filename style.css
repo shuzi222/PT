@@ -14,18 +14,18 @@ header {
   position: relative;
 }
 
-header .logo {
+.logo {
   max-width: 150px;
   margin-bottom: 1rem;
 }
 
-header .ammx {
+.ammx {
   max-width: 200px;
   margin-bottom: 1rem;
 }
 
-header .cuda {
-  max-width: 300px;
+.cuda {
+  max-width: 400px;
   margin-bottom: 5rem;
 }
 
@@ -143,6 +143,11 @@ footer a {
     max-width: 120px;
     /* 移动端缩小 Logo */
   }
+
+  .cuda {
+  max-width: 250px;
+  margin-bottom: 1rem;
+}
 
   .site-name {
   position: absolute;
