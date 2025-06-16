@@ -15,7 +15,7 @@ header {
 }
 
 .logo {
-  max-width: 250px;
+  max-width: 150px;
   margin-bottom: 1rem;
 }
 
@@ -145,7 +145,7 @@ footer a {
   }
 
   .cuda {
-  max-width: 400px;
+  max-width: 300px;
   margin-bottom: 1rem;
 }
 
