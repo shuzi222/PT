@@ -51,7 +51,7 @@ let provider, signer, contract;
 
 async function init() {
   if (!window.ethereum) {
-    updateStatus("请安装 MetaMask！");
+    updateStatus("看什么看，你TM都没安装 MetaMask ");
     return;
   }
   provider = new ethers.providers.Web3Provider(window.ethereum);
