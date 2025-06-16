@@ -95,7 +95,8 @@
     </section>
 
     <section>
-      <h2>用户交互流程</h2>
+      <h2 class="text-blue">用户转账可能出现常规转账与奖励转账：</h2>
+      <p>用户交互流程图：</p>
       <div class="mermaid">
         graph TD
         A[用户发起转账] --> B{检查解锁条件}
@@ -116,8 +117,10 @@
       <h2>经济模型分析</h2>
       <h3>用户收益</h3>
       <ul>
-        <li><strong>奖励</strong>：每次解锁 0.15 PT（100 PT × 0.15%）。</li>
-        <li><strong>Gas 成本</strong>：触发解锁的转账 Gas 费用较高（因包含多次铸造，不过绝对是有赚的）。</li>
+        <li><strong>奖励</strong>：每次成功奖励 0.15 PT</li>
+        <li><strong>Gas 成本</strong>：</li>
+        <li><strong>————方式一</strong>：大于 10 PT转账时触发挖矿，成本为单次转账的gas</li>
+        <li><strong>————方式二</strong>：支付一定数量的BNB触发挖矿，成本为一定数额的BNB+单次转账的gas</li>
       </ul>
     </section>
 
