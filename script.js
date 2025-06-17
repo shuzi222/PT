@@ -209,10 +209,7 @@ async function fetchBlocksLeft() {
     const minutes = Math.floor((timeLeftSeconds % 3600) / 60);
     const userReward = ethers.utils.formatUnits(status.userReward, TOKEN_DECIMALS);
     const unlockFee = status.unlockFee ? ethers.utils.formatUnits(status.unlockFee, 18) : "N/A";
-    blocksLeftElement.textContent = `剩余解锁区块：${blocksLeft}（约 ${hours}小时 ${minutes}分钟）\n` +
-                                   `用户奖励：${userReward} PT\n` +
-                                   `解锁费用：${unlockFee} BNB`;
-    updateStatus("解锁状态更新成功！");
+    blocksLeftElement.textContent = `剩余解锁区块：${blocksLeft}（约 ${hours}小时 ${minutes}分钟）\n`;
     console.log("Unlock status:", status);
   } catch (error) {
     console.error("Fetch blocks error:", error);
