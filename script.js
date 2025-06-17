@@ -39,12 +39,13 @@ const TOKEN_SYMBOL = "PT";
 const TOKEN_DECIMALS = 18;
 const TOKEN_IMAGE = "";
 
-const BSC_TESTNET = {
-  chainId: "0x61",
-  rpcUrls: ["https://data-seed-prebsc-1-s3.binance.org:8545/"],
-  chainName: "Binance Smart Chain Testnet",
+// BSC 主网配置
+const BSC_MAINNET = {
+  chainId: "0x38", // BSC 主网链 ID (56 十进制)
+  rpcUrls: ["https://bsc-dataseed.binance.org/"], // 主网官方 RPC
+  chainName: "Binance Smart Chain Mainnet",
   nativeCurrency: { name: "BNB", symbol: "BNB", decimals: 18 },
-  blockExplorerUrls: ["https://testnet.bscscan.com"],
+  blockExplorerUrls: ["https://bscscan.com"], // 主网 BscScan
 };
 
 // DOM 元素
@@ -141,13 +142,13 @@ async function switchNetwork() {
   try {
     await window.ethereum.request({
       method: "wallet_switchEthereumChain",
-      params: [{ chainId: BSC_TESTNET.chainId }],
+      params: [{ chainId: BSC_MAINNET.chainId }], // 切换到 BSC 主网
     });
   } catch (error) {
     if (error.code === 4902) {
       await window.ethereum.request({
         method: "wallet_addEthereumChain",
-        params: [BSC_TESTNET],
+        params: [BSC_MAINNET], // 添加 BSC 主网配置
       });
     } else {
       console.error("Switch network error:", error);
@@ -208,7 +209,7 @@ async function payFeeToUnlock() {
     }
     const tx = await contract.payFeeToUnlock({
       value: ethers.utils.parseEther("0.0002"),
-      gasLimit: 500000,
+      gasLimit: 300000,
     });
     await tx.wait();
     statusElement.classList.remove("loading");
