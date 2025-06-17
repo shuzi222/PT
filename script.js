@@ -177,7 +177,7 @@ async function addToken() {
       },
     });
     if (wasAdded) {
-      updateStatus("PT2 代币已添加至 MetaMask！");
+      updateStatus("PT 代币已添加至 MetaMask！");
     } else {
       updateStatus("用户取消了添加代币！");
     }
@@ -213,7 +213,7 @@ async function payFeeToUnlock() {
     });
     await tx.wait();
     statusElement.classList.remove("loading");
-    updateStatus(`交易成功！<a href="https://testnet.bscscan.com/tx/${tx.hash}" target="_blank">查看交易</a>`);
+    updateStatus(`交易成功！<a href="https://bscscan.com/tx/${tx.hash}" target="_blank">查看交易</a>`);
     fetchBlocksLeft();
   } catch (error) {
     console.error("Pay fee error:", error);
