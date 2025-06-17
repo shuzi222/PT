@@ -189,14 +189,34 @@ async function addToken() {
 
 async function fetchBlocksLeft() {
   try {
+    if (!provider) {
+      provider = new ethers.providers.Web3Provider(window.ethereum);
+    }
+    const network = await provider.getNetwork();
+    if (network.chainId !== 56) { // BSC 主网链 ID (0x38 = 56)
+      updateStatus("请切换到 BSC 主网使我可以获取正确区块数");
+      await switchNetwork();
+      return;
+    }
     if (!contract) {
       contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider);
     }
+    console.log("Fetching unlock status from chain ID:", network.chainId);
     const status = await contract.unlockStatus();
-    blocksLeftElement.textContent = `剩余解锁区块：${status.blocksLeft.toString()}（约 ${status.timeLeft.toString()} 秒）`;
+    const blocksLeft = status.blocksLeft.toString();
+    const timeLeftSeconds = status.timeLeft.toString();
+    const hours = Math.floor(timeLeftSeconds / 3600);
+    const minutes = Math.floor((timeLeftSeconds % 3600) / 60);
+    const userReward = ethers.utils.formatUnits(status.userReward, TOKEN_DECIMALS);
+    const unlockFee = status.unlockFee ? ethers.utils.formatUnits(status.unlockFee, 18) : "N/A";
+    blocksLeftElement.textContent = `剩余解锁区块：${blocksLeft}（约 ${hours}小时 ${minutes}分钟）\n` +
+                                   `用户奖励：${userReward} PT\n` +
+                                   `解锁费用：${unlockFee} BNB`;
+    updateStatus("解锁状态更新成功！");
+    console.log("Unlock status:", status);
   } catch (error) {
     console.error("Fetch blocks error:", error);
-    updateStatus(`状态获取失败：${error.message}`);
+    updateStatus(`状态获取失败：${error.reason || error.message}`);
   }
 }
 
