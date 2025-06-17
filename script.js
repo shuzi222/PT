@@ -1,5 +1,5 @@
 // 合约配置
-const CONTRACT_ADDRESS = "0x0Ee37377b465ea8B5174550AB9980f81f00364A9";
+const CONTRACT_ADDRESS = "0x110Df824358e436E7C502919d5d84AD9231deB5B";
 const CONTRACT_ABI = [
   {
     type: "function",
@@ -34,7 +34,7 @@ const CONTRACT_ABI = [
 ];
 
 // 代币配置
-const TOKEN_ADDRESS = "0x0Ee37377b465ea8B5174550AB9980f81f00364A9"; //代币合约地址
+const TOKEN_ADDRESS = "0x110Df824358e436E7C502919d5d84AD9231deB5B"; //代币合约地址
 const TOKEN_SYMBOL = "PT";
 const TOKEN_DECIMALS = 18;
 const TOKEN_IMAGE = "";
@@ -204,7 +204,7 @@ async function fetchBlocksLeft() {
     console.log("Fetching unlock status from chain ID:", network.chainId);
     const status = await contract.unlockStatus();
     const blocksLeft = status.blocksLeft.toString();
-    const timeLeftSeconds = status.timeLeft.toString();
+    const timeLeftSeconds = (parseInt(status.timeLeft) / 2).toString();
     const hours = Math.floor(timeLeftSeconds / 3600);
     const minutes = Math.floor((timeLeftSeconds % 3600) / 60);
     const userReward = ethers.utils.formatUnits(status.userReward, TOKEN_DECIMALS);
