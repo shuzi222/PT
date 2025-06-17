@@ -207,7 +207,7 @@ async function payFeeToUnlock() {
       contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
     }
     const tx = await contract.payFeeToUnlock({
-      value: ethers.utils.parseEther("0.0001"),
+      value: ethers.utils.parseEther("0.0002"),
       gasLimit: 500000,
     });
     await tx.wait();
